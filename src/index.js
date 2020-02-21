@@ -10,3 +10,10 @@ const app = (
 );
 
 ReactDOM.render(app, document.getElementById("root"));
+
+// font-family: 'Architects Daughter', cursive;
+
+// font-family: 'Raleway', sans-serif;
+
+// font-family: 'Open Sans', sans-serif;
+
