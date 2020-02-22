@@ -7,7 +7,8 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 600,
         fontFamily: '"Open sans", Helvetica, sans-serif',
         letterSpacing: -2,
-        fontSize: 90
+        fontSize: 90,
+        marginBottom: 25
     },
     sec:{
         font: '400 16px/16px "Architects Daughter", Helvetica, sans-serif',

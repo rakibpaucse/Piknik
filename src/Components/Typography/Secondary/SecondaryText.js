@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     primary:{
@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
         font: '100 70px/70px "Raleway", Helvetica, Arial, sans-serif',
         fontWeight: 100,
         letterSpacing: -2,
-
+        padding: '40px 0'
     },
     sec:{
         font: '400 16px/48px "Architects Daughter", Helvetica, sans-serif',
@@ -17,13 +17,13 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const SecondaryText = (props) => {
+const SecondaryText = ({primary,secondary}) => {
     const classes = useStyles();
 
     return (
         <h4 className={classes.primary}>
-            About
-            <span className={classes.sec}>Know more about the Event</span>
+            {primary}
+            <span className={classes.sec}>{secondary}</span>
         </h4>
     )
 }

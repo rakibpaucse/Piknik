@@ -1,43 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { AppBar, Tabs, Tab, Typography, Box } from '@material-ui/core';
+import { AppBar, Tabs, Tab} from '@material-ui/core';
 import { GoBook } from 'react-icons/go'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { FiMap } from 'react-icons/fi'
 import { IoMdImages } from 'react-icons/io'
-import SecondaryText from '../Typography/Secondary/SecondaryText';
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
+const a11yProps = (index) => {
   return {
     id: `full-width-tab-${index}`,
     'aria-controls': `full-width-tabpanel-${index}`,
   };
 }
+
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
@@ -52,7 +28,6 @@ const useStyles = makeStyles(theme => ({
     letterSpacing: 2,
     fontSize: 12,
     padding : 16,
-
   },
   iconStyle : {
     color: '#e58e26',
@@ -61,25 +36,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function FullWidthTabs() {
+const FullWidthTabs = (props) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const handleChangeIndex = index => {
-    setValue(index);
-  };
 
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Tabs
-          value={value}
-          onChange={handleChange}
+          value={props.value}
+          onChange={props.handleChange}
           indicatorColor="primary"
           textColor="primary"
           variant="fullWidth"
@@ -95,22 +61,13 @@ export default function FullWidthTabs() {
       </AppBar>
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
+        index={props.value}
+        onChangeIndex={props.handleChangeIndex}
       >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <SecondaryText/>
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Twoae
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Threeae
-        </TabPanel>
-        <TabPanel value={value} index={3} dir={theme.direction}>
-          Item Fourae
-        </TabPanel>
+        {props.children}
       </SwipeableViews>
     </div>
   );
 }
+
+export default FullWidthTabs;
